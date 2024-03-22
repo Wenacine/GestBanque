@@ -2,16 +2,70 @@
 
 public class Courant
 {
-    public string Numero;
-    public double _Solde;
-    public double Solde { get => Solde; private set => Solde = value; }
-    public double LigneDeCredit = 0;
-    public Personne Titulaire;
+    private string _numero;
+    private double _solde;
+    private double _ligneDeCredit = 0;
+    private Personne titulaire;
 
+    public string Numero
+    {
+        get
+        {
+            return _numero;
+        }
 
-public void Retrait(double montant)
+        set
+        {
+            _numero = value;
+        }
+    }
+
+    public double Solde
+    {
+        get
+        {
+            return _solde;
+        }
+
+        private set
+        {
+            _solde = value;
+        }
+    }
+
+    public double LigneDeCredit
+    {
+        get
+        {
+            return _ligneDeCredit;
+        }
+
+        set
+        {
+            if(value < 0){
+                Console.WriteLine("La ligne de crédit est strictement positive");
+                return;
+            }
+            _ligneDeCredit = value;
+        }
+    }
+
+    public Personne Titulaire
+    {
+        get
+        {
+            return titulaire;
+        }
+
+        set
+        {
+            titulaire = value;
+        }
+    }
+
+    public void Retrait(double montant)
 {
-    if (montant < 0)
+    if (montant <= 0)
     {
         Console.WriteLine($"Vous ne pouvez pas retirer d'argent");
         return;
