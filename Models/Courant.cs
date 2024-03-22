@@ -97,4 +97,12 @@ public void Depot(double montant)
     Solde += montant;
 }
 
+    public static double operator + (Courant solde1, Courant solde2)
+    {
+        if(solde1._solde  <= 0)
+        {
+
+        }
+    }
+
 }
