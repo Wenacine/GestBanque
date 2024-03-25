@@ -45,9 +45,41 @@
         public void Supprimer(string numero)
         {
             if (!numeroCompte.ContainsKey(numero))
+            {
                 return;
-
+            }
+            else
+            {
                 numeroCompte.Remove(numero);
+            }
+                
         }
+
+      public double AvoirDesComptes(Personne titulaire)
+        {
+            double total = 0D;
+
+       
+            /*foreach (KeyValuePair<string, Courant> kvp in numeroCompte)
+            {
+                if(kvp.Value.Titulaire == titulaire)
+                {
+                    total += kvp.Value;
+                }
+            }*/
+
+            foreach (Courant courant in numeroCompte.Values)
+            {
+                if (courant.Titulaire == titulaire)
+                {
+                    total += courant;
+                }
+            }
+
+            return total;
+        }
+
     }
+
+  
 }

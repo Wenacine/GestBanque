@@ -97,12 +97,30 @@ public void Depot(double montant)
     Solde += montant;
 }
 
-    public static double operator + (Courant solde1, Courant solde2)
+    public static double operator + (double solde1, Courant solde2)
     {
-        if(solde1._solde  <= 0)
-        {
+        return(solde1 < 0 ? 0 : solde1) + (solde2.Solde <0 ? 0 : solde2.Solde);
 
+        /*if(solde1  <= 0)
+        {
+            Console.WriteLine("Le solde 1 ne peut pas être pris en compte");
         }
+        else
+        {
+            return solde1._solde;
+        }
+
+        if(solde2._solde <= 0)
+        {
+            Console.WriteLine("Le solde 2 ne peut pas être pris en compte");
+        }
+        else
+        {
+            return solde2._solde;
+        }
+
+        return solde2._solde + solde1._solde;*/
+
     }
 
 }
