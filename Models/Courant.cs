@@ -1,37 +1,8 @@
 ﻿namespace Models;
 
-public class Courant
+public class Courant : Compte
 {
-    private string _numero;
-    private double _solde;
-    private double _ligneDeCredit = 0;
-    private Personne titulaire;
-
-    public string Numero
-    {
-        get
-        {
-            return _numero;
-        }
-
-        set
-        {
-            _numero = value;
-        }
-    }
-
-    public double Solde
-    {
-        get
-        {
-            return _solde;
-        }
-
-        private set
-        {
-            _solde = value;
-        }
-    }
+    private double _ligneDeCredit;
 
     public double LigneDeCredit
     {
@@ -42,85 +13,17 @@ public class Courant
 
         set
         {
-            if(value < 0){
-                Console.WriteLine("La ligne de crédit est strictement positive");
+            if (value < 0)
+            {
+                Console.WriteLine("La ligne de crédit est strictement positive..."); // => Erreur : Exception
                 return;
             }
             _ligneDeCredit = value;
         }
     }
 
-    public Personne Titulaire
+    public override void Retrait(double montant)
     {
-        get
-        {
-            return titulaire;
-        }
-
-        set
-        {
-            titulaire = value;
-        }
+        Retrait(montant, LigneDeCredit);
     }
-
-    public void Retrait(double montant)
-{
-    if (montant <= 0)
-    {
-        Console.WriteLine($"Vous ne pouvez pas retirer d'argent");
-        return;
-    }
-
-    //if (montant > Solde + LigneDeCredit) 
-    //{
-    //    Console.WriteLine("Vous n'avez pas assez d'argent");
-    //}
-
-    if((Solde - montant) < -LigneDeCredit)
-    {
-        Console.WriteLine("Vous n'avez pas assez d'argent");
-        return;
-        //Console.WriteLine("Vous pouvez retirer de l'argent");
-    }
-
-    Solde -= montant;
-}
-
-public void Depot(double montant)
-{
-    if(montant < 0)
-    {
-        Console.WriteLine("Vous ne pouvez pas déposer l'argent sur le compte.");
-        return;
-    }
-
-    Solde += montant;
-}
-
-    public static double operator + (double solde1, Courant solde2)
-    {
-        return(solde1 < 0 ? 0 : solde1) + (solde2.Solde <0 ? 0 : solde2.Solde);
-
-        /*if(solde1  <= 0)
-        {
-            Console.WriteLine("Le solde 1 ne peut pas être pris en compte");
-        }
-        else
-        {
-            return solde1._solde;
-        }
-
-        if(solde2._solde <= 0)
-        {
-            Console.WriteLine("Le solde 2 ne peut pas être pris en compte");
-        }
-        else
-        {
-            return solde2._solde;
-        }
-
-        return solde2._solde + solde1._solde;*/
-
-    }
-
 }

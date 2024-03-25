@@ -1,74 +1,54 @@
-﻿namespace Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Models
 {
     public class Banque
     {
-        
-        private string nomBanque { get; set; }
+        private Dictionary<string, Courant> _comptes = new Dictionary<string, Courant>();
 
-        public string NomBanque
+        public string Nom { get; set; }
+
+        public Courant? this[string numero]
         {
             get
             {
-                return nomBanque;
-            }
-
-            set
-            {
-                nomBanque = value;
-            }
-        }
-
-        private Dictionary<string, Courant> numeroCompte = new Dictionary<string, Courant>(); //Initialiser!
-        public Courant? this[string Key]
-        {
-            get
-            {
-                if(Key == null)
-                {
+                if (!_comptes.ContainsKey(numero))
                     return null;
-                }
-                if(!numeroCompte.ContainsKey(Key))
-                {
-                    return null;
-                }
 
-                return numeroCompte[Key];
-
+                return _comptes[numero];
             }
         }
 
         public void Ajouter(Courant compte)
         {
-            numeroCompte.Add(compte.Numero,compte);
-        } 
+            _comptes.Add(compte.Numero, compte);
+        }
 
         public void Supprimer(string numero)
         {
-            if (!numeroCompte.ContainsKey(numero))
-            {
+            if (!_comptes.ContainsKey(numero))
                 return;
-            }
-            else
-            {
-                numeroCompte.Remove(numero);
-            }
-                
+
+            _comptes.Remove(numero);
         }
 
-      public double AvoirDesComptes(Personne titulaire)
+        public double AvoirDesComptes(Personne titulaire)
         {
             double total = 0D;
 
-       
-            /*foreach (KeyValuePair<string, Courant> kvp in numeroCompte)
-            {
-                if(kvp.Value.Titulaire == titulaire)
-                {
-                    total += kvp.Value;
-                }
-            }*/
+            //foreach(KeyValuePair<string, Courant> kvp in _comptes)
+            //{
+            //    if(kvp.Value.Titulaire == titulaire)
+            //    {
+            //        total += kvp.Value;
+            //    }
+            //}
 
-            foreach (Courant courant in numeroCompte.Values)
+            foreach (Courant courant in _comptes.Values)
             {
                 if (courant.Titulaire == titulaire)
                 {
@@ -78,8 +58,5 @@
 
             return total;
         }
-
     }
-
-  
 }

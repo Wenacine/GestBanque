@@ -14,6 +14,11 @@ class Program
         Console.WriteLine($"{fahrenheit.Temperature}° F -> {celsius.Temperature}°C");
         #endregion
 
+        Banque banque = new Banque()
+        {
+            Nom = "MyFavouriteBank"
+        };
+
         Personne doeJohn = new Personne()
         {
             Nom = "Doe",
@@ -43,12 +48,7 @@ class Program
             Titulaire = doeJohn
         };
 
-        
-        courant.Depot(-100);
-        courant.Depot(100);
-        courant.Retrait(-100);
-        courant.Retrait(200);
-        courant.Retrait(600);
+
     }
 }
 
