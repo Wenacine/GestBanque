@@ -26,4 +26,13 @@ public class Courant : Compte
     {
         Retrait(montant, LigneDeCredit);
     }
+
+    protected override double CalculInteret()
+    {
+        if(Solde > 0)
+        {
+            return Solde * (3 / 100);
+        }
+        return Solde * (9.75 / 100);
+    }
 }

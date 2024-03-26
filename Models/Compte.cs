@@ -1,7 +1,8 @@
 ﻿namespace Models
 {
-    public class Compte
+    public abstract class Compte
     {
+        protected abstract double CalculInteret();
         public static double operator +(double montant, Compte compte)
         {
             return (montant < 0 ? 0 : montant) + (compte.Solde < 0 ? 0 : compte.Solde);
@@ -82,5 +83,12 @@
 
             Solde -= montant;
         }
+
+        public void AppliquerInteret()
+        {
+            Solde += CalculInteret();
+        }
+
+
     }
 }
