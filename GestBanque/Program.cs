@@ -48,6 +48,12 @@ class Program
             Titulaire = doeJohn
         };
 
+        Epargne epargne = new Epargne()
+        {
+            Numero = "new compte",
+            Titulaire = doeJohn
+
+        };
 
     }
 }
