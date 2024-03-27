@@ -14,20 +14,11 @@ class Program
         Console.WriteLine($"{fahrenheit.Temperature}° F -> {celsius.Temperature}°C");
         #endregion
 
-        Banque banque = new Banque()
-        {
-            Nom = "MyFavouriteBank"
-        };
+        Banque banque = new Banque("MyFavouriteBank");
 
-        Personne doeJohn = new Personne()
-        {
-            Nom = "Doe",
-            Prenom = "John",
-            DateNaiss = new DateTime(1970, 1, 1)
+        Personne doeJohn = new Personne("Doe","John", new DateTime(1970, 1, 1));
 
-        };
-
-        Courant courant = new Courant()
+        /*Courant courant = new Courant()
         {
             Numero = "0001",
             LigneDeCredit = 500,
@@ -53,7 +44,7 @@ class Program
             Numero = "new compte",
             Titulaire = doeJohn
 
-        };
+        };*/
 
     }
 }

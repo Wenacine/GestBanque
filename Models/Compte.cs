@@ -8,6 +8,17 @@
             return (montant < 0 ? 0 : montant) + (compte.Solde < 0 ? 0 : compte.Solde);
         }
 
+        protected Compte(string numero, Personne titulaire)
+        {
+            _numero = numero;
+            _titulaire = titulaire;
+        }
+
+        protected Compte(string numero, Personne titulaire, double solde) : this (numero, titulaire) 
+        {
+            Solde = solde;
+        }
+
         private Personne _titulaire;
         private string _numero;
         private double _solde;
@@ -19,7 +30,7 @@
                 return _numero;
             }
 
-            set
+            private set
             {
                 _numero = value;
             }
@@ -45,7 +56,7 @@
                 return _titulaire;
             }
 
-            set
+            private set
             {
                 _titulaire = value;
             }

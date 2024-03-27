@@ -4,6 +4,11 @@ public class Epargne : Compte
 {
     private DateTime _dernierRetrait;
 
+    public Epargne(string numero, Personne titulaire, double solde, DateTime dernierRetrait) : base (numero, titulaire, solde)
+    {
+        DernierRetrait = dernierRetrait;
+    }
+
     public DateTime DernierRetrait
     {
         get
@@ -11,11 +16,12 @@ public class Epargne : Compte
             return _dernierRetrait;
         }
 
-        set
+        private set
         {
             _dernierRetrait = value;
         }
     }
+
 
     public override void Retrait(double montant)
     {

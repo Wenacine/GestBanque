@@ -8,9 +8,16 @@ namespace Models
 {
     public class Banque
     {
-        private Dictionary<string, Compte> _comptes = new Dictionary<string, Compte>();
 
-        public string Nom { get; set; }
+        public Banque(string nom)
+        {
+            _comptes = new Dictionary<string, Compte>();
+            this.Nom = nom;
+        }
+
+        private Dictionary<string, Compte> _comptes;
+
+        public string? Nom { get; init; }
 
         public Compte? this[string numero]
         {
