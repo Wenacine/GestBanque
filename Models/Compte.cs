@@ -1,7 +1,17 @@
 ﻿namespace Models
 {
+    //public delegate void PassageEnNegatifDelegate(Compte compte);
     public abstract class Compte : ICustomer, IBanker
     {
+        public event Action<Compte>? PassageEnNegatifEvent;
+
+        protected void PassageEnNegatif()
+        {
+            //Action passageEnNegatifEvent = new Action();
+            PassageEnNegatifEvent?.Invoke(this);
+        }
+
+
         protected abstract double CalculInteret();
         public static double operator +(double montant, Compte compte)
         {

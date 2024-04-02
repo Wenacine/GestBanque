@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,14 +34,22 @@ namespace Models
         public void Ajouter(Compte compte)
         {
             _comptes.Add(compte.Numero, compte);
+            compte.PassageEnNegatifEvent += PassageEnNegatifAction;
+        }
+
+        private void PassageEnNegatifAction(Compte compte)
+        {
+            Console.WriteLine($"« Le compte {compte.Numero} vient de passer en négatif");
         }
 
         public void Supprimer(string numero)
         {
             if (!_comptes.ContainsKey(numero))
                 return;
-
+            Compte compte = this[numero]!;
+            _comptes[numero].PassageEnNegatifEvent -= PassageEnNegatifAction;
             _comptes.Remove(numero);
+            
         }
 
         public double AvoirDesComptes(Personne titulaire)
