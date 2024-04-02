@@ -66,8 +66,9 @@
         {
             if (montant <= 0)
             {
-                Console.WriteLine("Dépot d'un montant négatif impossible"); // => Erreur : Exception
-                return;
+                throw new ArgumentOutOfRangeException("Dépot d'un montant négatif impossible");
+                //Console.WriteLine("Dépot d'un montant négatif impossible"); // => Erreur : Exception
+                //return;
             }
 
             Solde += montant;
@@ -88,8 +89,9 @@
 
             if (Solde - montant < -ligneDeCredit)
             {
-                Console.WriteLine("Solde insuffisant"); // => Erreur : Exception
-                return;
+                throw new SoldeInsuffisantException("Solde insuffisant");
+                //Console.WriteLine("Solde insuffisant"); // => Erreur : Exception
+                //return;
             }
 
             Solde -= montant;
