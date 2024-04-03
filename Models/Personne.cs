@@ -1,6 +1,6 @@
 ﻿namespace Models;
 
-public partial class Personne
+public class Personne
 {
     public string Nom {  get; init; }
     public string Prenom {  get; init; }
@@ -11,6 +11,7 @@ public partial class Personne
         Nom = nom;
         Prenom = prenom;
         DateNaiss = dateNaiss;
-    }
 
+    }
+    
 }
